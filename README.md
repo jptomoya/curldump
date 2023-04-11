@@ -8,6 +8,7 @@ curldump [pcapng file] [curl options...] <url>
 ```
 
 pcapng file: the output filename of the pcapng file
+
 The second and subsequent arguments are passed to the curl command.
 
 The capture file will be saved under `/work` in the Docker container. So you need to create a bind mount for the directory you want to save the file.
@@ -15,7 +16,10 @@ The capture file will be saved under `/work` in the Docker container. So you nee
 ## Example
 Clone the repository:
 
-    git clone https://github.com/jptomoya/curldump.git
+```console
+git clone https://github.com/jptomoya/curldump.git
+cd curldump
+```
 
 Build the Dockerfile:
 
