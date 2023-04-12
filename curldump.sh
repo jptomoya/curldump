@@ -1,11 +1,14 @@
 #!/bin/sh
 
 usage() {
-  echo "Usage: $0 <pcapng file> <curl options...>"
+  echo "Usage: $0 <pcapng file> <curl options...>" 1>&2
   exit 1
 }
 
-if [ $# -lt 2 ]; then
+if [ ! -f /.dockerenv ]; then
+  echo "This script must be run in a Docker container." 1>&2
+  exit 1
+elif [ $# -lt 2 ]; then
   usage
 fi
 
