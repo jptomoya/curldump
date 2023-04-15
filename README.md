@@ -1,6 +1,6 @@
 # curldump
-A Docker image to run the curl command and save the capture file that containing the tls decryption secret.
-You can immediately analyze the saved pcapng file in Wireshark.
+A Docker image to run the [curl](https://curl.se/) command and save the capture file that containing the TLS decryption secret.
+You can immediately analyze the saved pcapng file in [Wireshark](https://www.wireshark.org/).
 
 ## Usage
 ```console
