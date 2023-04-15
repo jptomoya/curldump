@@ -30,7 +30,7 @@ docker build -t curldump .
 Run the docker container:
 
 ```console
-    docker run -it --rm -v $PWD:/work --cap-add NET_ADMIN curldump curldump.pcapng https://www.example.com/
+docker run -it --rm -v $PWD:/work --cap-add NET_ADMIN curldump https://www.example.com/
 ```
 
 The capture file will be saved under `/work` in the Docker container. Therefore, you need to create a bind mount for the directory where you want to save the file.
