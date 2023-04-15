@@ -37,3 +37,6 @@ The capture file will be saved under `/work` in the Docker container. Therefore,
 Use the `-e OUTFILE=<pcapng file>` option in the `docker run` command to specify the output file name.
 
 Finally, open the saved pcapng file with Wireshark. The TLS communication will be decrypted automatically!
+
+https://user-images.githubusercontent.com/4786564/232228733-301b3dff-6914-4c1a-918a-47cf835c5ddf.mp4
+
