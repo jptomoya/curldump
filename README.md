@@ -4,14 +4,14 @@ You can immediately analyze the saved pcapng file in Wireshark.
 
 ## Usage
 ```console
-curldump [pcapng file] [curl options...] <url>
+OUTFILE=<pcapng file> curldump.sh [curl options...] <url>
 ```
 
-pcapng file: the output filename of the pcapng file
+pcapng file: the output filename of the pcapng file. If the `OUTFILE` environment variable is not set, the result is saved as "capture.pcapng" in the current directory.
 
-The second and subsequent arguments are passed to the curl command.
+All arguments are passed to the curl command.
 
-The capture file will be saved under `/work` in the Docker container. So you need to create a bind mount for the directory you want to save the file.
+Although you can run this script from host directly, it is recommended to run the script in a Docker container to get a clean result by filtering out unrelated packets.
 
 ## Example
 Clone the repository:
@@ -23,10 +23,17 @@ cd curldump
 
 Build the Dockerfile:
 
-    docker build -t curldump .
+```console
+docker build -t curldump .
+```
 
 Run the docker container:
 
+```console
     docker run -it --rm -v $PWD:/work --cap-add NET_ADMIN curldump curldump.pcapng https://www.example.com/
+```
 
-Then, open the saved pcapng file with Wireshark. The TLS communication will be decrypted automatically!
+The capture file will be saved under `/work` in the Docker container. Therefore, you need to create a bind mount for the directory where you want to save the file.
+Use the `-e OUTFILE=<pcapng file>` option in the `docker run` command to specify the output file name.
+
+Finally, open the saved pcapng file with Wireshark. The TLS communication will be decrypted automatically!
