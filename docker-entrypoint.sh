@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-uid=$(ls -an | grep -E " \.$" | awk '{print $3}')
+uid=$(stat -c '%u' .)
 adduser -D -u "$uid" user
 adduser user wireshark
 
