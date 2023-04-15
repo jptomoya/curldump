@@ -7,7 +7,7 @@ You can immediately analyze the saved pcapng file in [Wireshark](https://www.wir
 OUTFILE=<pcapng file> curldump.sh [curl options...] <url>
 ```
 
-pcapng file: the output filename of the pcapng file. If the `OUTFILE` environment variable is not set, the result is saved as "capture.pcapng" in the current directory.
+pcapng file: the output filename of the pcapng file. If the `OUTFILE` environment variable is not set, the result is saved as "curldump_XXXXXX.pcapng" in the current directory.
 
 All arguments are passed to the curl command.
 
