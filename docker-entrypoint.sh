@@ -11,4 +11,9 @@ else
 fi
 adduser "$su_user" wireshark
 
-exec su -s /bin/sh "$su_user" -c "/curldump.sh $*"
+args='/curldump.sh '
+for arg in "$@"
+do
+  args="$args '$arg'"
+done
+exec su -s /bin/sh "$su_user" -c "$args"
