@@ -5,6 +5,7 @@ on:
     paths:
       - '**.sh'
       - 'Dockerfile'
+on: workflow_dispatch
 
 jobs:
   lint:
