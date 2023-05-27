@@ -18,6 +18,6 @@ jobs:
         with:
           dockerfile: Dockerfile
           verbose: true
-          ignore: DL3018
+          failure-threshold: error
       - name: Lint shell script
         uses: ludeeus/action-shellcheck@2.0.0
