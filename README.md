@@ -51,7 +51,7 @@ To install curldump into `/usr/local/bin`, open a teminal and type the following
 ```console
 sudo sh -c 'cat <<EOF > /usr/local/bin/curldump
 #!/bin/sh
-docker run --rm -i -v "$PWD":/work --cap-add NET_ADMIN -e OUTFILE ghcr.io/jptomoya/curldump "\$@"
+docker run --rm -i -v "\$PWD":/work --cap-add NET_ADMIN -e OUTFILE ghcr.io/jptomoya/curldump "\$@"
 EOF'
 sudo chmod +x /usr/local/bin/curldump
 ```
