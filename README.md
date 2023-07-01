@@ -32,6 +32,7 @@ To run the `curldump.sh` script, following tools must be installed.
 * curl
 * dumpcap (from `wireshark-common`) 
 * editcap (from `wireshark-common`) 
+* ss (from `iproute2`)
 
 Finally, open the saved pcapng file with Wireshark. The TLS communication will be decrypted automatically.
 
