@@ -6,6 +6,13 @@ usage() {
   exit 1
 }
 
+wait_until_tcp_fin_wait_dismissed() {
+  while ss -t -n | grep -F -q 'FIN-WAIT'
+  do
+    sleep 0.1
+  done
+}
+
 if [ ! -f /.dockerenv ]; then
   echo "Note: This script is intended to run within a Docker container." 1>&2
   echo "The resulting capture file may contain packets unrelated to the curl command." 1>&2
@@ -32,8 +39,17 @@ sslkeylog_file="$(mktemp -u sslkeylog_XXXXXX)"
 SSLKEYLOGFILE="/tmp/$sslkeylog_file" curl "$@" &
 pid_curl=$!
 wait $pid_curl
-
-sleep 3	# HACK: wait for the dumpcap buffer to be filled
+wait_until_tcp_fin_wait_dismissed
+base_cap_size=$(stat -c '%s' "/tmp/$cap_file")
+timeout 10 sh -c "
+while :
+do
+  cap_size=\$(stat -c '%s' \"/tmp/$cap_file\")
+  if [ \"\$cap_size\" -ne $base_cap_size ]; then
+    break
+  fi
+  sleep 0.1
+done"
 kill -INT $pid_dumpcap
 wait $pid_dumpcap
 editcap --inject-secrets tls,"/tmp/$sslkeylog_file" "/tmp/$cap_file" "${OUTFILE:-$cap_file}"
