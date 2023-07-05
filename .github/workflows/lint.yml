@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
-    name: Run Hadolint and ShellCheck
+  hadolint:
+    name: Run Hadolint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,5 +20,11 @@ jobs:
           dockerfile: Dockerfile
           verbose: true
           failure-threshold: error
+  shellcheck:
+    name: Run ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Lint shell script
         uses: ludeeus/action-shellcheck@2.0.0
