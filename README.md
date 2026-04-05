@@ -71,6 +71,14 @@ Then, build the Dockerfile:
 docker build -t curldump .
 ```
 
+Mozilla removed `AAA Certification Service`, which can cause certificate errors for sites such as `example.com` in some environments. If that affects your build, you can enable a temporary workaround at build time.
+
+```console
+docker build --build-arg INSTALL_COMODO_AAA_CERT=1 -t curldump .
+```
+
+`INSTALL_COMODO_AAA_CERT` is disabled by default. This is a temporary compatibility workaround, and it is kept opt-in so the default image does not permanently carry an extra root certificate. It should be removed once the base image or the remote certificate chain no longer requires it.
+
 Afterwards, run the built docker container:
 
 ```console
