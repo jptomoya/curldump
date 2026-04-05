@@ -49,7 +49,7 @@ do
     break
   fi
   sleep 0.1
-done"
+done" || true
 kill -INT $pid_dumpcap
 wait $pid_dumpcap
 editcap --inject-secrets tls,"/tmp/$sslkeylog_file" "/tmp/$cap_file" "${OUTFILE:-$cap_file}"
