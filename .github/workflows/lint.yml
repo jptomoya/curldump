@@ -10,21 +10,21 @@ on:
 jobs:
   hadolint:
     name: Run Hadolint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: Dockerfile
           verbose: true
           failure-threshold: error
   shellcheck:
     name: Run ShellCheck
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: Lint shell script
         uses: ludeeus/action-shellcheck@2.0.0
