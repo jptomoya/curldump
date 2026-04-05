@@ -26,5 +26,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends shellcheck
       - name: Lint shell script
-        uses: ludeeus/action-shellcheck@2.0.0
+        run: |
+          git ls-files '*.sh' -z | xargs -0 -- shellcheck
