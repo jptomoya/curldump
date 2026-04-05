@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:latest
 
 ARG INSTALL_COMODO_AAA_CERT=0
 
